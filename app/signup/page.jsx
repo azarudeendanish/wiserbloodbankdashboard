@@ -40,7 +40,7 @@ const Signup = () => {
             if (response.status === 201) {
                 toast.success("Sign up successful!");
                 console.log(response);
-                router.refresh()
+                router.push('/login')
             } else {
                 toast.error("Sign up failed. Please try again.");
             }

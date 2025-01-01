@@ -1,6 +1,6 @@
 "use client";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -143,12 +143,14 @@ const Login = () => {
                                 )}
                             </Formik>
                         </Card.Body>
-                        <ul>{apiData.map((item, index) =>
-                            <>
-                                <li key={index}>{item.email}</li>
-                                <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
-                            </>
-                        )}</ul>
+                        <div>
+                            {apiData.map((item, index) =>
+                                <div className="d-flex justify-content-between mb-1">
+                                    <div key={index}>{item.email}</div>
+                                    <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
+                                </div>
+                            )}
+                        </div>
                     </Card>
                 </Col>
             </Row>
