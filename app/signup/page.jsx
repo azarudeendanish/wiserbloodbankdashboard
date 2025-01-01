@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Link from "next/link";
 
 const Signup = () => {
     const router = useRouter();
@@ -27,15 +28,15 @@ const Signup = () => {
         console.log(values);
         const { name, email, password, num, hcode } = values;
         console.log(name, email, password, num, hcode);
-        
+
         try {
-            const response = await fetch("/api/signup", {
+            const response = await fetch("/api/user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password, num, hcode }),
             });
             console.log(response);
-            
+
             if (response.status === 201) {
                 toast.success("Sign up successful!");
                 console.log(response);
@@ -188,6 +189,9 @@ const Signup = () => {
                                                 >
                                                     Delete
                                                 </button>
+                                                <Link href='/login' className='btn btn-outline-danger fw-bold shadow-sm'>
+                                                    Login
+                                                </Link>
                                             </div>
                                         </Form>
                                     )}

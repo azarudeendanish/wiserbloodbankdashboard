@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
-const schemaData = mongoose.Schema(
+const schemaData = new Schema(
   {
     name: { type: String, required: true },
     num: { type: Number, required: true },
@@ -13,5 +13,18 @@ const schemaData = mongoose.Schema(
   }
 );
 
-const userModel = mongoose.models.schemaData || mongoose.model("signup", schemaData);
+const userModel = mongoose.models.signup || mongoose.model("signup", schemaData);
+// const userModel = mongoose.model("signup", schemaData);
 export default userModel
+
+// var mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
+
+// var userSchema = new Schema({
+//    name:String,
+//    email:String,
+//    password:String,
+//    num:Number,
+//    hcode:String,
+// });
+// module.exports = mongoose.model('signup', userSchema);

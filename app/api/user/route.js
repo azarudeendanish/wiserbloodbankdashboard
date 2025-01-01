@@ -21,3 +21,18 @@ export async function POST(request) {
     }
 }
 
+export async function GET() {
+    try {
+        console.log('get method');
+        await connectDB();
+        const userData = await UserModel.find({ })
+        console.log(userData);
+        return NextResponse.json(userData, { status: 201 });
+    } catch (error) {
+        console.error("Error during POST request:", error);
+        return NextResponse.json(
+            { message: "Server error", error: error.message },
+            { status: 500 }
+        );
+    }
+}
