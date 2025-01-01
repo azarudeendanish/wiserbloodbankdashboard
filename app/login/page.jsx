@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
     const [apiData, setApiData] = useState([]);
-    const navigate = useRouter();
+    const router = useRouter();
     // const router = useRouter()
 
     useEffect(() => {
@@ -35,36 +35,48 @@ const Login = () => {
             .required("Password is required"),
     });
 
-    const handleSubmit = (values, {resetForm}) => {
+    const handleSubmit = (values, { resetForm }) => {
         console.log('entererd formik');
 
         const { email, password } = values;
 
         const user = apiData.find((item) => item.email === email);
-        console.log('userData-> ',user);
+
 
         if (!user) {
             toast.error("Email not found. Please register first.");
-            navigate.push("/signup");
+            router.push("/signup");
             return
         }
 
         if (password !== user.password) {
             toast.warning("Incorrect password. Please try again.");
             resetForm()
-            // navigate.refresh()
+            // router.refresh()
             return
         }
         console.log('user length->  ', user.email);
-        
+
         if (user?.email) {
             toast.success("Login successful");
             // localStorage.setItem("userData", JSON.stringify(user));
-            navigate.push("/");
+            router.push("/");
         }
 
     };
-
+    const handleDelete = async (id) => {
+        console.log(id);
+        if (confirm("do you want to delete this item?")) {
+            await axios.delete(`/api/user?id=${id}`)
+                .then(() => {
+                    getUserData()
+                    router.refresh()
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
     return (
         <Container>
             <Row className="d-flex justify-content-center align-items-center vh-100">
@@ -116,12 +128,12 @@ const Login = () => {
                                             <button
                                                 type="submit"
                                                 className="btn btn-success fw-bold shadow-sm"
-                                                // disabled={isSubmitting}
+                                            // disabled={isSubmitting}
                                             >
                                                 Sign in
                                             </button>
                                             <Link
-                                                href="/Signup"
+                                                href="/signup"
                                                 className="btn btn-outline-success fw-bold shadow-sm"
                                             >
                                                 Create Account
@@ -131,6 +143,12 @@ const Login = () => {
                                 )}
                             </Formik>
                         </Card.Body>
+                        <ul>{apiData.map((item, index) =>
+                            <>
+                                <li key={index}>{item.email}</li>
+                                <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
+                            </>
+                        )}</ul>
                     </Card>
                 </Col>
             </Row>

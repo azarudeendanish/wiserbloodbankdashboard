@@ -1,4 +1,4 @@
-import UserModel from '@/Models/userModel'
+import userModel from '@/Models/userModel';
 import connectDB from "@/app/lib/connectDB";
 import { NextResponse } from "next/server";
 
@@ -9,7 +9,8 @@ export async function POST(request) {
         const { name, email, password, num, hcode } = await request.json();
         console.log("Received data:", { name, email, password, num, hcode });
         await connectDB();
-        await UserModel.create({ name, email, num, password, hcode })
+        
+        await userModel.create({ name, email, num, password, hcode })
         // await Product.create({ password, num, email });
         return NextResponse.json({ message: "User Created" }, { status: 201 });
     } catch (error) {
@@ -25,7 +26,7 @@ export async function GET() {
     try {
         console.log('get method');
         await connectDB();
-        const userData = await UserModel.find({ })
+        const userData = await userModel.find({ })
         console.log(userData);
         return NextResponse.json(userData, { status: 201 });
     } catch (error) {
@@ -35,4 +36,20 @@ export async function GET() {
             { status: 500 }
         );
     }
+}
+
+
+export async function DELETE(request) {
+    await connectDB();
+    const id = request.nextUrl.searchParams.get('id')
+    await userModel.findByIdAndDelete(id)
+    return NextResponse.json(
+        {
+            success: true,
+            message: "record deleted"
+        },
+        {
+            status: 200
+        }
+    )
 }
