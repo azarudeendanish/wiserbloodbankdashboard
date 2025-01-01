@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 const links = [
-  { name: "Home", href: "/", icon: HomeIcon },
+  { name: "Dashboard", href: "/", icon: HomeIcon },
   {
     name: "Blood Donor",
     href: "/blood-donor",
