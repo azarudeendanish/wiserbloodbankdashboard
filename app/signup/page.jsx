@@ -62,7 +62,6 @@ const Signup = () => {
 
     return (
         <>
-            signup page
             {/* <Container>
                 <Row className="d-flex justify-content-center align-items-center vh-100">
                     <Col xs={12} md={6} lg={4}>
@@ -198,19 +197,150 @@ const Signup = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                </Row>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
+                </Row> 
             </Container> */}
+            <div className="flex justify-center items-center min-h-screen">
+                <div className="w-full sm:w-1/2 lg:w-1/3">
+                    <div className="bg-white shadow-lg rounded-lg p-6">
+                        <div className="text-center">
+                            <h2 className="font-bold text-red-500 mb-4">Sign Up</h2>
+                        </div>
+                        <Formik
+                            initialValues={{
+                                name: "",
+                                num: "",
+                                email: "",
+                                password: "",
+                                repassword: "",
+                                hcode: "",
+                            }}
+                            validationSchema={validationSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {() => (
+                                <Form>
+                                    <div className="mb-4">
+                                        <Field
+                                            type="text"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Enter Name"
+                                        />
+                                        <ErrorMessage
+                                            name="name"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <Field
+                                            type="email"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="email"
+                                            name="email"
+                                            placeholder="Enter Email"
+                                        />
+                                        <ErrorMessage
+                                            name="email"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <Field
+                                            type="text"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="num"
+                                            name="num"
+                                            placeholder="Enter Phone Number"
+                                        />
+                                        <ErrorMessage
+                                            name="num"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <Field
+                                            type="password"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter Password"
+                                        />
+                                        <ErrorMessage
+                                            name="password"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <Field
+                                            type="password"
+                                            placeholder="Re-Enter Password"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="repassword"
+                                            name="repassword"
+                                        />
+                                        <ErrorMessage
+                                            name="repassword"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <Field
+                                            type="text"
+                                            className="w-full px-4 py-2 border rounded-lg shadow-sm"
+                                            id="hcode"
+                                            name="hcode"
+                                            placeholder="Enter hospital code"
+                                        />
+                                        <ErrorMessage
+                                            name="hcode"
+                                            component="div"
+                                            className="text-red-500 mt-1"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-4 mt-6">
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-green-500 text-white font-bold py-2 rounded-lg shadow-sm"
+                                        >
+                                            Sign Up
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => deleteData(1)}
+                                            className="w-full bg-red-500 text-white font-bold py-2 rounded-lg shadow-sm"
+                                        >
+                                            Delete
+                                        </button>
+                                        <Link href='/login' className='btn w-full text-center bg-transparent border border-red-500 text-red-500 font-bold py-2 rounded-lg shadow-sm'>
+                                            Login
+                                        </Link>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
+                </div>
+            </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     );
 };

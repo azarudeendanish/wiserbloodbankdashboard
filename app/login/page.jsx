@@ -76,96 +76,100 @@ const Login = () => {
         }
     }
     return (
-        <>login</>
-        // <Container>
-        //     <Row className="d-flex justify-content-center align-items-center vh-100">
-        //         <Col xs={12} md={6} lg={4}>
-        //             <Card className="shadow-lg border-0 rounded p-4">
-        //                 <Card.Body>
-        //                     <div className="text-center">
-        //                         <h2 className="fw-bold text-success mb-4">Sign in</h2>
-        //                     </div>
+        <>
+                <div className="flex justify-center items-center min-h-screen">
+                    <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
+                        <div className="bg-white shadow-lg rounded-lg p-6">
+                            <div className="text-center mb-4">
+                                <h2 className="font-bold text-green-500">Sign in</h2>
+                            </div>
 
-        //                     <Formik
-        //                         initialValues={{ email: "", password: "" }}
-        //                         validationSchema={validationSchema}
-        //                         onSubmit={handleSubmit}
-        //                     >
-        //                         {({ isSubmitting }) => (
-        //                             <Form>
-        //                                 <div className="mb-3">
-        //                                     <Field
-        //                                         type="email"
-        //                                         className="form-control shadow-sm"
-        //                                         id="email"
-        //                                         name="email"
-        //                                         placeholder="Enter Email"
-        //                                     />
-        //                                     <ErrorMessage
-        //                                         name="email"
-        //                                         component="div"
-        //                                         className="text-danger mt-1"
-        //                                     />
-        //                                 </div>
+                            <Formik
+                                initialValues={{ email: "", password: "" }}
+                                validationSchema={validationSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ isSubmitting }) => (
+                                    <Form>
+                                        <div className="mb-4">
+                                            <Field
+                                                type="email"
+                                                className="form-control shadow-sm w-full p-2 border rounded-lg"
+                                                id="email"
+                                                name="email"
+                                                placeholder="Enter Email"
+                                            />
+                                            <ErrorMessage
+                                                name="email"
+                                                component="div"
+                                                className="text-red-500 mt-1"
+                                            />
+                                        </div>
 
-        //                                 <div className="mb-3">
-        //                                     <Field
-        //                                         type="password"
-        //                                         className="form-control shadow-sm"
-        //                                         id="password"
-        //                                         name="password"
-        //                                         placeholder="Enter Password"
-        //                                     />
-        //                                     <ErrorMessage
-        //                                         name="password"
-        //                                         component="div"
-        //                                         className="text-danger mt-1"
-        //                                     />
-        //                                 </div>
+                                        <div className="mb-4">
+                                            <Field
+                                                type="password"
+                                                className="form-control shadow-sm w-full p-2 border rounded-lg"
+                                                id="password"
+                                                name="password"
+                                                placeholder="Enter Password"
+                                            />
+                                            <ErrorMessage
+                                                name="password"
+                                                component="div"
+                                                className="text-red-500 mt-1"
+                                            />
+                                        </div>
 
-        //                                 <div className="d-grid gap-2 mt-4">
-        //                                     <button
-        //                                         type="submit"
-        //                                         className="btn btn-success fw-bold shadow-sm"
-        //                                     // disabled={isSubmitting}
-        //                                     >
-        //                                         Sign in
-        //                                     </button>
-        //                                     <Link
-        //                                         href="/signup"
-        //                                         className="btn btn-outline-success fw-bold shadow-sm"
-        //                                     >
-        //                                         Create Account
-        //                                     </Link>
-        //                                 </div>
-        //                             </Form>
-        //                         )}
-        //                     </Formik>
-        //                 </Card.Body>
-        //                 <div>
-        //                     {apiData.map((item, index) =>
-        //                         <div className="d-flex justify-content-between mb-1">
-        //                             <div key={index}>{item.email}</div>
-        //                             <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
-        //                         </div>
-        //                     )}
-        //                 </div>
-        //             </Card>
-        //         </Col>
-        //     </Row>
+                                        <div className="mt-4">
+                                            <button
+                                                type="submit"
+                                                className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-600"
+                                            >
+                                                Sign in
+                                            </button>
+                                            <Link
+                                                href="/signup"
+                                                className="block text-center mt-4 py-2 px-4 border border-green-500 text-green-500 font-bold rounded-lg hover:bg-green-100"
+                                            >
+                                                Create Account
+                                            </Link>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
 
-        //     <ToastContainer
-        //         position="top-right"
-        //         autoClose={3000}
-        //         hideProgressBar={false}
-        //         newestOnTop={false}
-        //         closeOnClick
-        //         rtl={false}
-        //         pauseOnFocusLoss
-        //         draggable
-        //         pauseOnHover
-        //     />
-        // </Container>
+                            <div className="mt-6">
+                                {apiData.map((item, index) => (
+                                    <div key={index} className="flex justify-between items-center mb-2">
+                                        <div>{item.email}</div>
+                                        <div>
+                                            <button
+                                                onClick={() => handleDelete(item._id)}
+                                                className="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+        </>
     );
 };
 
