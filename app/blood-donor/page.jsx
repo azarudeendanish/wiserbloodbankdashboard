@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { CardsSkeleton, InvoicesTableSkeleton, TableRowSkeleton } from '../ui/skeletons';
+
 
 export default function Page() {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +44,7 @@ export default function Page() {
                 // console.log(response);
                 closeModal()
                 getUserData();
+                router.push('/')
             } else {
                 toast.error("Donor Id failed. Please try again.");
             }
@@ -96,13 +99,13 @@ export default function Page() {
             }
             // setApiData(data)
         } catch (error) {
-            alert(error)
+            console.log('api error');
         }
         // const res = await axios.get('/api/User');
         // setUsers(res.data.user);
 
     }
-
+    
     useEffect(() => {
         getUserData();
     }, []);
@@ -113,6 +116,7 @@ export default function Page() {
                 <div className="text-end">
                     <button className="bg-blue-500 hover:bg-blue-800 btn text-white" onClick={openModal}>Add Donor</button>
                 </div>
+
             </div>
             <div>
                 <div className='mt-5 text-center'>
@@ -158,7 +162,7 @@ export default function Page() {
                             </table>
                         </div>
                         :
-                        <div>No Donors list</div>
+                        <InvoicesTableSkeleton />
                     }
                 </div>
             </div>
