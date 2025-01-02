@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Row, Col, Card } from "react-bootstrap";
+// import { Container, Row, Col, Card } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from "next/link";
 import * as Yup from "yup";
@@ -78,95 +78,96 @@ const Login = () => {
         }
     }
     return (
-        <Container>
-            <Row className="d-flex justify-content-center align-items-center vh-100">
-                <Col xs={12} md={6} lg={4}>
-                    <Card className="shadow-lg border-0 rounded p-4">
-                        <Card.Body>
-                            <div className="text-center">
-                                <h2 className="fw-bold text-success mb-4">Sign in</h2>
-                            </div>
+        <>login</>
+        // <Container>
+        //     <Row className="d-flex justify-content-center align-items-center vh-100">
+        //         <Col xs={12} md={6} lg={4}>
+        //             <Card className="shadow-lg border-0 rounded p-4">
+        //                 <Card.Body>
+        //                     <div className="text-center">
+        //                         <h2 className="fw-bold text-success mb-4">Sign in</h2>
+        //                     </div>
 
-                            <Formik
-                                initialValues={{ email: "", password: "" }}
-                                validationSchema={validationSchema}
-                                onSubmit={handleSubmit}
-                            >
-                                {({ isSubmitting }) => (
-                                    <Form>
-                                        <div className="mb-3">
-                                            <Field
-                                                type="email"
-                                                className="form-control shadow-sm"
-                                                id="email"
-                                                name="email"
-                                                placeholder="Enter Email"
-                                            />
-                                            <ErrorMessage
-                                                name="email"
-                                                component="div"
-                                                className="text-danger mt-1"
-                                            />
-                                        </div>
+        //                     <Formik
+        //                         initialValues={{ email: "", password: "" }}
+        //                         validationSchema={validationSchema}
+        //                         onSubmit={handleSubmit}
+        //                     >
+        //                         {({ isSubmitting }) => (
+        //                             <Form>
+        //                                 <div className="mb-3">
+        //                                     <Field
+        //                                         type="email"
+        //                                         className="form-control shadow-sm"
+        //                                         id="email"
+        //                                         name="email"
+        //                                         placeholder="Enter Email"
+        //                                     />
+        //                                     <ErrorMessage
+        //                                         name="email"
+        //                                         component="div"
+        //                                         className="text-danger mt-1"
+        //                                     />
+        //                                 </div>
 
-                                        <div className="mb-3">
-                                            <Field
-                                                type="password"
-                                                className="form-control shadow-sm"
-                                                id="password"
-                                                name="password"
-                                                placeholder="Enter Password"
-                                            />
-                                            <ErrorMessage
-                                                name="password"
-                                                component="div"
-                                                className="text-danger mt-1"
-                                            />
-                                        </div>
+        //                                 <div className="mb-3">
+        //                                     <Field
+        //                                         type="password"
+        //                                         className="form-control shadow-sm"
+        //                                         id="password"
+        //                                         name="password"
+        //                                         placeholder="Enter Password"
+        //                                     />
+        //                                     <ErrorMessage
+        //                                         name="password"
+        //                                         component="div"
+        //                                         className="text-danger mt-1"
+        //                                     />
+        //                                 </div>
 
-                                        <div className="d-grid gap-2 mt-4">
-                                            <button
-                                                type="submit"
-                                                className="btn btn-success fw-bold shadow-sm"
-                                            // disabled={isSubmitting}
-                                            >
-                                                Sign in
-                                            </button>
-                                            <Link
-                                                href="/signup"
-                                                className="btn btn-outline-success fw-bold shadow-sm"
-                                            >
-                                                Create Account
-                                            </Link>
-                                        </div>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </Card.Body>
-                        <div>
-                            {apiData.map((item, index) =>
-                                <div className="d-flex justify-content-between mb-1">
-                                    <div key={index}>{item.email}</div>
-                                    <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
-                                </div>
-                            )}
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
+        //                                 <div className="d-grid gap-2 mt-4">
+        //                                     <button
+        //                                         type="submit"
+        //                                         className="btn btn-success fw-bold shadow-sm"
+        //                                     // disabled={isSubmitting}
+        //                                     >
+        //                                         Sign in
+        //                                     </button>
+        //                                     <Link
+        //                                         href="/signup"
+        //                                         className="btn btn-outline-success fw-bold shadow-sm"
+        //                                     >
+        //                                         Create Account
+        //                                     </Link>
+        //                                 </div>
+        //                             </Form>
+        //                         )}
+        //                     </Formik>
+        //                 </Card.Body>
+        //                 <div>
+        //                     {apiData.map((item, index) =>
+        //                         <div className="d-flex justify-content-between mb-1">
+        //                             <div key={index}>{item.email}</div>
+        //                             <div><button onClick={() => handleDelete(item._id)} className="btn btn-danger">delete</button></div>
+        //                         </div>
+        //                     )}
+        //                 </div>
+        //             </Card>
+        //         </Col>
+        //     </Row>
 
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-        </Container>
+        //     <ToastContainer
+        //         position="top-right"
+        //         autoClose={3000}
+        //         hideProgressBar={false}
+        //         newestOnTop={false}
+        //         closeOnClick
+        //         rtl={false}
+        //         pauseOnFocusLoss
+        //         draggable
+        //         pauseOnHover
+        //     />
+        // </Container>
     );
 };
 

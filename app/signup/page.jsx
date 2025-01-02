@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Row, Col, Card } from "react-bootstrap";
+// import { Container, Row, Col, Card } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -64,7 +64,8 @@ const Signup = () => {
 
     return (
         <>
-            <Container>
+            signup page
+            {/* <Container>
                 <Row className="d-flex justify-content-center align-items-center vh-100">
                     <Col xs={12} md={6} lg={4}>
                         <Card className="shadow-lg border-0 rounded p-4">
@@ -211,7 +212,7 @@ const Signup = () => {
                     draggable
                     pauseOnHover
                 />
-            </Container>
+            </Container> */}
         </>
     );
 };
