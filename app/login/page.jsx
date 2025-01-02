@@ -1,6 +1,6 @@
 "use client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Fragment, useEffect, useState } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
