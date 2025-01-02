@@ -29,7 +29,7 @@ export async function GET() {
         console.log(donorData);
         return NextResponse.json(donorData, { status: 201 });
     } catch (error) {
-        console.error("Error during POST request:", error);
+        console.error("Error during GET request:", error);
         return NextResponse.json(
             { message: "Server error", error: error.message },
             { status: 500 }

@@ -85,14 +85,22 @@ export default function Page() {
         // }
     };
 
-
-
-
     const getUserData = async () => {
-        const res = await fetch('/api/donors');
-        const data = await res.json();
-        console.log(data);
-        setApiData(data)
+        try {
+            const res = await axios.get('/api/donors');
+            const data = await res?.data;
+            console.log('donor user api data=>  ', res);
+            console.log('donor user api data=>  ', data);
+            if (data) {
+                setApiData(data)
+            }
+            // setApiData(data)
+        } catch (error) {
+            alert(error)
+        }
+        // const res = await axios.get('/api/User');
+        // setUsers(res.data.user);
+
     }
 
     useEffect(() => {
@@ -122,9 +130,9 @@ export default function Page() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {apiData.map((item, index) => (
+                                    {apiData && apiData.map((item, index) => (
                                         <tr key={item._id} className={`border-t ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                                            <td className="px-6 py-3 text-sm text-gray-700">{index+1}</td>
+                                            <td className="px-6 py-3 text-sm text-gray-700">{index + 1}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.email}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.number}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.bloodgroup}</td>
