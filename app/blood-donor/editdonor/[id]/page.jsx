@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function Page({ params }) {
     const [apiData, setApiData] = useState(null)
     let { id } = use(params)
-
+    const router = useRouter()
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
@@ -22,7 +22,7 @@ export default function Page({ params }) {
     });
 
 
-    const handleUpdateDonor = async (id, values) => {
+    const handleUpdateDonor = async (values) => {
         console.log(id);
 
          
@@ -30,7 +30,7 @@ export default function Page({ params }) {
                 await axios.put(`/api/donors/${id}`, values)
                 .then((res) => {
                     toast.success("your data updated")
-                    redirect.push('/blood-donor');
+                    router.push('/blood-donor');
                 })
                 .catch((err) => {
                     toast.error("Failed to update data.");
@@ -67,14 +67,15 @@ export default function Page({ params }) {
                         </div>
                         <Formik
                             initialValues={{
-                                name: apiData.name,
-                                number: "",
-                                email: "",
-                                bloodgroup: '',
-                                aadharnumber: ''
+                                name: apiData && apiData.name || '',
+                                number: apiData && apiData.number || '',
+                                email: apiData && apiData.email || '',
+                                bloodgroup: apiData && apiData.bloodgroup || '',
+                                aadharnumber: apiData && apiData.aadharnumber || ''
                             }}
                             validationSchema={validationSchema}
                             onSubmit={handleUpdateDonor}
+                            enableReinitialize={true} 
                         >
                             {() => (
                                 <Form>
@@ -85,7 +86,6 @@ export default function Page({ params }) {
                                             id="name"
                                             name="name"
                                             placeholder="Enter Name"
-                                            // value={apiData && apiData.name}
                                         />
                                         <ErrorMessage
                                             name="name"
@@ -100,7 +100,7 @@ export default function Page({ params }) {
                                             id="email"
                                             name="email"
                                             placeholder="Enter Email"
-                                            value={apiData && apiData.email}
+                                            
                                         />
                                         <ErrorMessage
                                             name="email"
@@ -115,7 +115,7 @@ export default function Page({ params }) {
                                             id="number"
                                             name="number"
                                             placeholder="Enter Phone Number"
-                                            value={apiData && apiData.number}
+                                             
                                         />
                                         <ErrorMessage
                                             name="number"
@@ -130,7 +130,7 @@ export default function Page({ params }) {
                                             id="aadharnumber"
                                             name="aadharnumber"
                                             placeholder="Enter Aadhar Number"
-                                            value={apiData && apiData.aadharnumber}
+                                             
 
                                         />
                                         <ErrorMessage
@@ -146,7 +146,7 @@ export default function Page({ params }) {
                                             id="bloodgroup"
                                             name="bloodgroup"
                                             placeholder="Enter Bloodgroup"
-                                            value={apiData && apiData.bloodgroup}
+                                             
 
                                         />
                                         <ErrorMessage

@@ -113,7 +113,7 @@ export default function Page() {
                             <table className="min-w-full table-auto border-collapse">
                                 <thead className="bg-gray-100">
                                     <tr>
-                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">ID</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">S.NO</th>
                                         <th className="px-6 py-3 text-sm font-semibold text-gray-600">Email</th>
                                         <th className="px-6 py-3 text-sm font-semibold text-gray-600">Number</th>
                                         <th className="px-6 py-3 text-sm font-semibold text-gray-600">Blood Group</th>
@@ -124,7 +124,7 @@ export default function Page() {
                                 <tbody>
                                     {apiData.map((item, index) => (
                                         <tr key={item._id} className={`border-t ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                                            <td className="px-6 py-3 text-sm text-gray-700">{item._id}</td>
+                                            <td className="px-6 py-3 text-sm text-gray-700">{index+1}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.email}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.number}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.bloodgroup}</td>
