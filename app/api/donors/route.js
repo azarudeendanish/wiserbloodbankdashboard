@@ -41,7 +41,8 @@ export async function GET() {
 export async function DELETE(request) {
     await connectDB();
     const id = request.nextUrl.searchParams.get('id')
-    await userModel.findByIdAndDelete(id)
+    console.log('searchParams=> ',id);
+    await donorModel.findByIdAndDelete(id)
     return NextResponse.json(
         {
             success: true,

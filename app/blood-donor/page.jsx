@@ -40,9 +40,8 @@ export default function Page() {
             if (response.status === 201) {
                 toast.success("Donor Id added successful!");
                 // console.log(response);
-                // closeModal()
-                // getUserData();
-
+                closeModal()
+                getUserData();
             } else {
                 toast.error("Donor Id failed. Please try again.");
             }
@@ -52,16 +51,38 @@ export default function Page() {
         }
     };
 
-    const deleteData = async (id) => {
+    const handleDelete = async (id) => {
+        console.log(id);
+
         try {
-            const response = await axios.delete(`/api/delete/${id}`);
-            if (response.status === 200) {
-                toast.success("Data deleted successfully!");
+            if (confirm("do you want to delete this item?")) {
+                const response = await axios.delete(`/api/donors?id=${id}`);
+                if (response.status === 200) {
+                    toast.success("Data deleted successfully!");
+                    getUserData()
+                }
             }
         } catch (error) {
             toast.error("Failed to delete data.");
             console.error("Error during deletion:", error);
         }
+    };
+    const handleUpdate = async (id) => {
+        console.log(id);
+        router.push(`/blood-donor/editdonor/${id}`)
+
+        // try {
+        //     if (confirm("do you want to delete this item?")) {
+        //         const response = await axios.delete(`/api/donors?id=${id}`);
+        //         if (response.status === 200) {
+        //             toast.success("Data deleted successfully!");
+        //             getUserData()
+        //         }
+        //     }
+        // } catch (error) {
+        //     toast.error("Failed to delete data.");
+        //     console.error("Error during deletion:", error);
+        // }
     };
 
 
@@ -92,9 +113,12 @@ export default function Page() {
                             <table className="min-w-full table-auto border-collapse">
                                 <thead className="bg-gray-100">
                                     <tr>
-                                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">ID</th>
-                                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
-                                        <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Action</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">ID</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">Email</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">Number</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">Blood Group</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">Action</th>
+                                        <th className="px-6 py-3 text-sm font-semibold text-gray-600">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,10 +126,20 @@ export default function Page() {
                                         <tr key={item._id} className={`border-t ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item._id}</td>
                                             <td className="px-6 py-3 text-sm text-gray-700">{item.email}</td>
+                                            <td className="px-6 py-3 text-sm text-gray-700">{item.number}</td>
+                                            <td className="px-6 py-3 text-sm text-gray-700">{item.bloodgroup}</td>
+                                            <td className="px-6 py-3 text-sm text-gray-700">
+                                                <button
+                                                    onClick={() => handleUpdate(item._id)}
+                                                    className="bg-green-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
+                                                >
+                                                    Edit
+                                                </button>
+                                            </td>
                                             <td className="px-6 py-3 text-sm text-gray-700">
                                                 <button
                                                     onClick={() => handleDelete(item._id)}
-                                                    className="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                                                    className="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
                                                 >
                                                     Delete
                                                 </button>
