@@ -16,9 +16,9 @@ const links = [
     href: "/blood-donor",
     icon: DocumentDuplicateIcon,
   },
-  { name: "Blood Issue", href: "/blood-issued", icon: UserGroupIcon },
-  { name: "Login", href: "/login", icon: UsersIcon },
-  { name: "Signup", href: "/signup", icon: ArrowRightStartOnRectangleIcon },
+  // { name: "Blood Issue", href: "/blood-issued", icon: UserGroupIcon },
+  // { name: "Login", href: "/login", icon: UsersIcon },
+  // { name: "Signup", href: "/signup", icon: ArrowRightStartOnRectangleIcon },
 ];
 
 export default function NavLinks() {
