@@ -19,11 +19,11 @@ export default function Home() {
   const [bloodABNegative, setBloodABNegative] = useState(0)
   const [bloodOPositive, setBloodOPositive] = useState(0)
   const [bloodONegative, setBloodONegative] = useState(0)
-  const filterData = (item, blood) => item.filter(item => (item.bloodgroup) === blood)
+
   const getUserData = async () => {
     try {
-        const res = await axios.get('/api/donors');
-        const data = await res?.data;
+        const res = axios.get('/api/donors');
+        const data = res?.data;
         console.log('donor user api data=>  ', res);
         console.log('donor user api data=>  ', data);
         if (data) {
@@ -56,16 +56,6 @@ useEffect(() => {
     <>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {donorCount ? <Card title="Donors Count" value={donorCount} type="customers" />: <CardSkeleton /> }
-        {/* <Suspense fallback={<CardSkeleton />}>
-        <Card title="Donors Count" value={donorCount} type="customers" />
-        </Suspense> */}
-        {/* <Card title="Blood Units" value={donorCount} type="pending" /> */}
-        {/* <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
-        <Card
-          title="Total Customers"
-          value={numberOfCustomers}
-          type="customers"
-        /> */}
       </div>
       <div className="mt-5 mb-2">Blood Stock</div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -77,13 +67,19 @@ useEffect(() => {
         {bloodABNegative ? <Card title="AB-" value={bloodABNegative} type="blood" /> : ''}
         {bloodOPositive ? <Card title="O+" value={bloodOPositive} type="blood" /> : ''}
         {bloodONegative ? <Card title="O-" value={bloodONegative} type="blood" /> : ''}
-        {/* <Card title="Total Invoices" value={numberOfInvoices} type="blood" />
+        </div>
+         {/* <Card title="Total Invoices" value={numberOfInvoices} type="blood" />
         <Card
-          title="Total Customers"
-          value={numberOfCustomers}
+          title="Blood unit available"
+          value={donorCount}
           type="customers"
-        /> */}
+        />
       </div>
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-2">
+        <div>
+         <LatestDonors latestDonors={apidata && apidata} />
+        </div>
+      </div> */}
     </>
-  );
+  )
 }

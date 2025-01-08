@@ -22,12 +22,12 @@ export default function Page({ params }) {
     });
 
 
-    const handleUpdateDonor = async (values) => {
+    const handleUpdateDonor =  (values) => {
         console.log(id);
 
          
             if (confirm("do you want to update this item?")) {
-                await axios.put(`/api/donors/${id}`, values)
+                 axios.put(`/api/donors/${id}`, values)
                 .then((res) => {
                     toast.success("your data updated")
                     router.push('/blood-donor');
@@ -41,8 +41,8 @@ export default function Page({ params }) {
 
        
         }
-    const getDonorApi = async () => {
-        await axios.get(`/api/donors/${id}`)
+    const getDonorApi =  () => {
+         axios.get(`/api/donors/${id}`)
             .then((res) => {
                 if (res.data.success) {
                     setApiData(res.data.donor)
