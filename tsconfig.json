@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/ui/dashboard/donor-count.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -22,13 +22,13 @@ const Signup = () => {
             .required("Confirm Password is required"),
     });
 
-    const handleSubmit = async (values) => {
+    const handleSubmit =  (values) => {
         console.log(values);
         const { name, email, password, num, hcode } = values;
         console.log(name, email, password, num, hcode);
 
         try {
-            const response = await fetch("/api/user", {
+            const response =  fetch("/api/user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password, num, hcode }),
@@ -48,9 +48,9 @@ const Signup = () => {
         }
     };
 
-    const deleteData = async (id) => {
+    const deleteData =  (id) => {
         try {
-            const response = await axios.delete(`/api/delete/${id}`);
+            const response =  axios.delete(`/api/delete/${id}`);
             if (response.status === 200) {
                 toast.success("Data deleted successfully!");
             }

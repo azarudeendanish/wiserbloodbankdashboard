@@ -20,10 +20,13 @@ const Login = () => {
     }, []);
 
     const getUserData = async () => {
-        const res = await fetch('/api/user');
-        const data = await res.json();
+        const response =  await fetch('/api/user');
+        const data =  response?.json();
         console.log(data);
-        setApiData(data)
+        if(data){
+            console.log('api data=>  ',data);
+            setApiData(data)
+        }
     }
 
     const validationSchema = Yup.object().shape({
@@ -62,10 +65,10 @@ const Login = () => {
         }
 
     };
-    const handleDelete = async (id) => {
+    const handleDelete =  (id) => {
         console.log(id);
         if (confirm("do you want to delete this item?")) {
-            await axios.delete(`/api/user?id=${id}`)
+             axios.delete(`/api/user?id=${id}`)
                 .then(() => {
                     getUserData()
                     router.refresh()
@@ -140,7 +143,7 @@ const Login = () => {
                             </Formik>
 
                             <div className="mt-6">
-                                {apiData.map((item, index) => (
+                                {apiData.length > 0 && apiData.map((item, index) => (
                                     <div key={index} className="flex justify-between items-center mb-2">
                                         <div>{item.email}</div>
                                         <div>
@@ -152,7 +155,9 @@ const Login = () => {
                                             </button>
                                         </div>
                                     </div>
-                                ))}
+                                ))
+                             
+                            }
                             </div>
                         </div>
                     </div>
