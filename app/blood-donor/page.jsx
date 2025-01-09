@@ -20,11 +20,11 @@ export default function Page() {
 
     const router = useRouter();
     const validationSchema = Yup.object().shape({
-        name: Yup.string().required("Name is required"),
+        name: Yup.string().min(2, 'Name is Too Short!').max(30, 'Name is Too Long!').required("Name is required"),
         email: Yup.string().email("Invalid email").required("Email is required"),
-        number: Yup.string().required("Number is required"),
-        aadharnumber: Yup.string().min(12, 'aadhar number must be at least 12 characters').required("Aadhar number is required"),
-        bloodgroup: Yup.string().required("Blood group is required"),
+        number: Yup.number('Enter a correct number').min(10, 'Phone number must be 10 numbers').required("Number is required"),
+        aadharnumber: Yup.number('enter a correct aadhar number').min(12, 'aadhar number must be at least 12 characters').required("Aadhar number is required"),
+        bloodgroup: Yup.string().min(2, 'you need to enter the positive or negetive case').max(3, 'it is not looks like blood group').required("Blood group is required"),
     });
 
     const handleSubmit = async (values) => {
